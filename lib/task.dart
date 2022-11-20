@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Task extends StatelessWidget {
-  const Task({Key? key}) : super(key: key);
+  final String name;
+  final String subname;
+  final String progress;
+  const Task({Key? key,required this.name,required this.progress,required this.subname}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class Task extends StatelessWidget {
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                    "Beginner Hunter",
+                    name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -30,7 +33,7 @@ class Task extends StatelessWidget {
                   bottom: 20,
                 ),
                 child: Text(
-                    "Complete 3 hunts",
+                    subname,
                     style: TextStyle(
                         fontSize: 16
                     )
@@ -46,7 +49,7 @@ class Task extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: FractionallySizedBox(
-                    widthFactor: 1/3,
+                    widthFactor: double.parse(progress),
                     child: Container(
                       color: Colors.amber[800],
                       height: 20,
@@ -57,7 +60,7 @@ class Task extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                      "${(1/3 * 100).toStringAsFixed(2)}%",
+                      "${(double.parse(progress) * 100).toStringAsFixed(2)}%",
                       style: TextStyle(
                         color: Colors.white,
                       )

@@ -126,6 +126,7 @@ class _MapsState extends State<Maps> {
     //
     // }
     setState(() {
+      _pos = globals.pos;
       _markers1 = _data1.map((e) => Marker(
           point: LatLng(e[1], e[0]),
           width: 60,
@@ -154,8 +155,8 @@ class _MapsState extends State<Maps> {
                                     globals.pos += 1;
                                     _pos += 1;
                                     if (_pos <= 4) {
-                                      _markers = [_markers1[_pos]];
-                                      print(_pos);
+                                      _markers = _markers1;
+                                      print(globals.pos);
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
@@ -189,7 +190,9 @@ class _MapsState extends State<Maps> {
                                             )
                                           ],
                                         );
-                                      });
+                                      } );
+                                    } else{
+                                      _markers = _markers1;
                                     }
 
                                   }
@@ -278,6 +281,7 @@ class _MapsState extends State<Maps> {
     }
     @override
     Widget build(BuildContext context) {
+      _pos = globals.pos;
       LatLng currentLatLng;
       if (_currentPosition != null) {
         currentLatLng =

@@ -209,7 +209,7 @@ class _MapsState extends State<Maps> {
                   size: 60,
                   color: Colors.redAccent,
                 ),))).toList();
-      _markers = [_markers1[_pos]];
+      _markers = _markers1;
     });
 
   }

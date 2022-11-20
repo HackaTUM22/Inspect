@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Maps(),
     Leader(),
     Column(
-      children: [Task(), Task(), Task()]
+      children: [Task(name: 'Beginner Haunt',subname: 'Take >2 pictures',progress: '0.5',), Task(name:'Basic inspection',subname:'1 picture report situation',progress: '0.0',), Task(name:'Specialist inspection',subname: '>5 pictures',progress: '1',)]
     ),
     Shop(),
   ];

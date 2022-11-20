@@ -12,29 +12,29 @@ class _LeaderState extends State<Leader> {
   int _selectedIndex = 0;
 
   List<List<String>> data1 = [
-    ["1", "Mike", "1000"],
-    ["2", "Mike", "900"],
-    ["3", "Mike", "800"],
-    ["4", "Mike", "700"],
-    ["5", "Mike", "600"],
-    ["6", "Mike", "500"],
-    ["7", "Mike", "400"],
-    ["8", "Mike", "300"],
-    ["9", "Mike", "200"],
-    ["10", "Mike", "100"],
+    ["1", "Mike", "10000"],
+    ["2", "Mauro", "9000"],
+    ["3", "Gioele", "8000"],
+    ["4", "Luke", "7000"],
+    ["5", "Sarah", "6000"],
+    ["6", "Jake", "5000"],
+    ["7", "Laura", "4000"],
+    ["8", "Silvan", "3000"],
+    ["9", "Laura", "2000"],
+    ["10", "Nicolas", "1000"],
   ];
 
   List<List<String>> data2 = [
-    ["1", "Andrew", "1000"],
-    ["2", "Andrew", "900"],
-    ["3", "Andrew", "800"],
-    ["4", "Andrew", "700"],
-    ["5", "Andrew", "600"],
+    ["1", "Sarah", "1000"],
+    ["2", "Mauro", "900"],
+    ["3", "Silvan", "800"],
+    ["4", "Jake", "700"],
+    ["5", "Laura", "600"],
     ["6", "Andrew", "500"],
-    ["7", "Andrew", "400"],
-    ["8", "Andrew", "300"],
-    ["9", "Andrew", "200"],
-    ["10", "Andrew", "100"],
+    ["7", "Gioele", "400"],
+    ["8", "Mike", "300"],
+    ["9", "Nicolas", "200"],
+    ["10", "Luke", "100"],
   ];
 
   final List<Widget> _widgets = [

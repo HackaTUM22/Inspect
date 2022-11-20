@@ -26,18 +26,43 @@ class _MapsState extends State<Maps> {
   final url = 'https://hacktum-highway.herokuapp.com/get_issues_location';
   var _data = [];
   var _data1 = [
-    [48.135247, 11.576466],
-    [48.136228, 11.575613],
-    [48.138190, 11.579974],
-    [48.140102, 11.578713],
-    [48.141441, 11.579719]
+    [11.61430161647961,48.111355593621],
+    [11.606248275586244,48.17566584451249],
+  [11.63329945842623,48.13569262741428],
+  [11.58813361092573,48.1765304782419],
+  [11.570784175202212,48.14912076050485],
+  [11.60678544203654,48.17607553069282],
+  [11.5806306,48.106241100000005],
+  [11.613351477617488,48.13046701048668],
+  [11.622674470519335,48.16163430223077],
+  [11.608645678780396,48.172420882348],
+  [11.547805204701106,48.11291668736461],
+  [11.6237920164228,48.16265466072837],
+  [11.61900312193212,48.118031503459626],
+  [11.60673962645799,48.17604819685549],
+  [11.62046123985182,48.12177302648248],
+  [11.615932367309346,48.11290549141834],
+  [11.61818097587384,48.11925483880852],
+  [11.616833182061308,48.16881681797188],
+  [11.5873091,48.104692400000005],
+  [11.603695515414293,48.17208671297508],
+  [11.615292419261202,48.11211300211448],
+  [11.525206316022905,48.14868644684231],
+  [11.601411486290576,48.171796512604],
+  [11.549527023953246,48.16089514763812],
+  [11.618987385257748,48.11835266871433],
+  [11.624135105357796,48.16302274431093],
+  [11.541217267708962,48.10089803370931],
+  [11.617648147817643,48.11503273780353],
+  [11.613106928911195,48.17299008497127],
+  [11.527965543942017,48.14774795111176],
   ];
   var _words = [
-    "Hello",
-    "World",
-    "I",
-    "Am",
-    "Sleepy",
+    "Welcome to the quest!",
+    "Once he reached the McHenry house to deliver a package at 59, Rupertigaustra\u00dfe, Jack parked on the dirt road, accidentally hitting a tire on the garden hose. shortly after getting out of the car, having retrieved the parcel from the trunk and having walked towards the house, Jack noticed the water hose, but he did not give it importance as he heard Mrs. McHencry lying on the floor by the stove.",
+    "Jack rushed to her, he says and was trying to revive her when Mr. McHenry came through the door of the garage. McHenry had taken the day off to water his backyard garden. He had been hosing down his flowerbeds and hedges for half an hour when he noticed the truck in his garage. He walked over to investigate.",
+    "Solution: McHenry, while throttling his wife, had been surprised by the arrival of the deliveryman and had hurried to the backyard and his alibi of hosing his garden.  Had he been there all the time, he would have investigated why the water stopped flowing. The truck wheels were parked on the garden hose for 'about two minutes,' remember?",
+    "Here is your reward!",
   ];
 
   List<Marker> _markers = [
@@ -102,7 +127,7 @@ class _MapsState extends State<Maps> {
     // }
     setState(() {
       _markers1 = _data1.map((e) => Marker(
-          point: LatLng(e[0], e[1]),
+          point: LatLng(e[1], e[0]),
           width: 60,
           height: 60,
           builder: (context) =>
@@ -288,6 +313,7 @@ class _MapsState extends State<Maps> {
                           padding: EdgeInsets.all(50),
                         ),
                         markers: _markers + [Marker(
+                          anchorPos: AnchorPos.align(AnchorAlign.center),
                           point: currentLatLng,
                           width: 60,
                           height: 60,

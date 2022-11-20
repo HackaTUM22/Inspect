@@ -10,3 +10,4 @@ List<String> paths = [
   "assets/images/ava4.png",
   "assets/images/ava5.png",
 ];
+int pos = 0;

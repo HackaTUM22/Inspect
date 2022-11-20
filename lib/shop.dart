@@ -9,7 +9,7 @@ class Shop extends StatefulWidget {
 }
 
 class _ShopState extends State<Shop> {
-  String _curPath = globals.paths[globals.cur];
+  String _curPath = globals.paths[globals.cur-1];
   int _curBalance = globals.balance;
   int _cur = 1;
 
@@ -113,14 +113,32 @@ class _ShopState extends State<Shop> {
                     TextButton(
                       onPressed: () {
                         if (!globals.owned.contains(1)) {
-                          globals.balance -= 150;
-                          globals.owned.add(1);
-                          globals.cur = 1;
-                          setState(() {
-                            _cur = 1;
-                            _curBalance = globals.balance;
-                            _curPath = globals.paths[_cur - 1];
-                          });
+                          if (globals.balance >= 150) {
+                            globals.balance -= 150;
+                            globals.owned.add(1);
+                            globals.cur = 1;
+                            setState(() {
+                              _cur = 1;
+                              _curBalance = globals.balance;
+                              _curPath = globals.paths[_cur - 1];
+                            });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Not enough money"),
+                                    content: Text("Earn more coins by inspecting issues and come back!"),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                        child: Text("Continue"),
+                                      )
+                                    ],
+                                  );
+                                }
+                            );
+                          }
                         } else {
                           globals.cur = 1;
                           setState(() {
@@ -145,14 +163,32 @@ class _ShopState extends State<Shop> {
                     TextButton(
                       onPressed: () {
                         if (!globals.owned.contains(2)) {
-                          globals.balance -= 150;
-                          globals.owned.add(2);
-                          globals.cur = 2;
-                          setState(() {
-                            _cur = 2;
-                            _curBalance = globals.balance;
-                            _curPath = globals.paths[_cur - 1];
-                          });
+                          if (globals.balance >= 150) {
+                            globals.balance -= 150;
+                            globals.owned.add(2);
+                            globals.cur = 2;
+                            setState(() {
+                              _cur = 2;
+                              _curBalance = globals.balance;
+                              _curPath = globals.paths[_cur - 1];
+                            });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Not enough money"),
+                                    content: Text("Earn more coins by inspecting issues and come back!"),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                        child: Text("Continue"),
+                                      )
+                                    ],
+                                  );
+                                }
+                            );
+                          }
                         } else {
                           globals.cur = 2;
                           setState(() {
@@ -185,14 +221,32 @@ class _ShopState extends State<Shop> {
                       TextButton(
                           onPressed: () {
                             if (!globals.owned.contains(3)) {
-                              globals.balance -= 150;
-                              globals.owned.add(3);
-                              globals.cur = 3;
-                              setState(() {
-                                _cur = 3;
-                                _curBalance = globals.balance;
-                                _curPath = globals.paths[_cur - 1];
-                              });
+                              if(globals.balance >= 150) {
+                                globals.balance -= 150;
+                                globals.owned.add(3);
+                                globals.cur = 3;
+                                setState(() {
+                                  _cur = 3;
+                                  _curBalance = globals.balance;
+                                  _curPath = globals.paths[_cur - 1];
+                                });
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Not enough money"),
+                                        content: Text("Earn more coins by inspecting issues and come back!"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                            child: Text("Continue"),
+                                          )
+                                        ],
+                                      );
+                                    }
+                                );
+                              }
                             } else {
                               globals.cur = 3;
                               setState(() {
@@ -220,14 +274,32 @@ class _ShopState extends State<Shop> {
                       TextButton(
                         onPressed: () {
                           if (!globals.owned.contains(4)) {
-                            globals.balance -= 150;
-                            globals.owned.add(4);
-                            globals.cur = 4;
-                            setState(() {
-                              _cur = 4;
-                              _curBalance = globals.balance;
-                              _curPath = globals.paths[_cur - 1];
-                            });
+                            if(globals.balance >= 150) {
+                              globals.balance -= 150;
+                              globals.owned.add(4);
+                              globals.cur = 4;
+                              setState(() {
+                                _cur = 4;
+                                _curBalance = globals.balance;
+                                _curPath = globals.paths[_cur - 1];
+                              });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Not enough money"),
+                                      content: Text("Earn more coins by inspecting issues and come back!"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                          child: Text("Continue"),
+                                        )
+                                      ],
+                                    );
+                                  }
+                              );
+                            }
                           } else {
                             globals.cur = 4;
                             setState(() {

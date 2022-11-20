@@ -25,16 +25,84 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   final url = 'https://hacktum-highway.herokuapp.com/get_issues_location';
   var _data = [];
-  List<Marker> _markers = [];
-  List<Loc> locs = [];
-  void fetchData() async {
-    try{
-      final response = await http.get(Uri.parse(url));
-      final jsonData = jsonDecode(response.body) as List;
-      setState(() {
-        _data = jsonData;
-        _markers = _data.map((e) => Marker(
-          point: LatLng(double.parse(e[0].toString()), double.parse(e[1].toString())),
+  var _data1 = [
+    [48.135247, 11.576466],
+    [48.136228, 11.575613],
+    [48.138190, 11.579974],
+    [48.140102, 11.578713],
+    [48.141441, 11.579719]
+  ];
+  var _words = [
+    "Hello",
+    "World",
+    "I",
+    "Am",
+    "Sleepy",
+  ];
+
+  List<Marker> _markers = [
+
+  ];
+
+  List<Marker> _markers1 = [
+
+  ];
+
+  int _pos = globals.pos;
+
+  void fetchData() {
+    // try{
+    //   final response = await http.get(Uri.parse(url));
+    //   final jsonData = jsonDecode(response.body) as List;
+    //   setState(() {
+    //     _data = jsonData;
+    //     _markers = _data.map((e) => Marker(
+    //       point: LatLng(double.parse(e[0].toString()), double.parse(e[1].toString())),
+    //       width: 60,
+    //       height: 60,
+    //       builder: (context) =>
+    //           InkWell(
+    //             onTap: () {
+    //               showDialog(
+    //                   context: context,
+    //                   builder: (BuildContext context) {
+    //                     return AlertDialog(
+    //                       title: Text("Submit photo"),
+    //                       content: Text("Submit photo for the current issue using your camera."),
+    //                       actions: [
+    //                         TextButton(
+    //                             onPressed: () async{
+    //                                 final ImagePicker _picker = ImagePicker();
+    //                                 final XFile? result = await _picker.pickImage(source: ImageSource.camera);
+    //                                 if (result == null) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //                                     content: Text('No image was received')));
+    //                                 else {
+    //                                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //                                       content: Text('Thank you very much!')));
+    //                                   globals.balance += 100;
+    //                                   Navigator.of(context, rootNavigator: true).pop(result);
+    //                                 }
+    //                               },
+    //                             child: Text("Take photo")
+    //                         )
+    //                       ],
+    //                     );
+    //                   }
+    //               );
+    //             },
+    //             child:Icon(
+    //             Icons.pin_drop,
+    //             size: 60,
+    //             color: Colors.redAccent,
+    //           ),))).toList();
+    //   });
+    //   print(_data);
+    // } catch(err) {
+    //
+    // }
+    setState(() {
+      _markers1 = _data1.map((e) => Marker(
+          point: LatLng(e[0], e[1]),
           width: 60,
           height: 60,
           builder: (context) =>
@@ -49,17 +117,58 @@ class _MapsState extends State<Maps> {
                           actions: [
                             TextButton(
                                 onPressed: () async{
-                                    final ImagePicker _picker = ImagePicker();
-                                    final XFile? result = await _picker.pickImage(source: ImageSource.camera);
-                                    if (result == null) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                        content: Text('No image was received')));
-                                    else {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                          content: Text('Thank you very much!')));
-                                      globals.balance += 100;
-                                      Navigator.of(context, rootNavigator: true).pop(result);
+                                  final ImagePicker _picker = ImagePicker();
+                                  final XFile? result = await _picker.pickImage(source: ImageSource.camera);
+                                  if (result == null) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                      content: Text('No image was received')));
+                                  else {
+                                    Navigator.of(context, rootNavigator: true).pop(result);
+                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                        content: Text('Thank you very much!')));
+                                    globals.balance += 100;
+                                    globals.pos += 1;
+                                    _pos += 1;
+                                    if (_pos <= 4) {
+                                      _markers = [_markers1[_pos]];
+                                      print(_pos);
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text("Step $_pos/5"),
+                                            content: Text(_words[_pos-1]),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.of(context, rootNavigator: true).pop(result),
+                                                child: Text("Continue"),
+                                              )
+                                            ],
+                                          );
+                                        }
+                                      );
+                                    } else if (_pos == 5) {
+                                      _markers = _markers1;
+                                      print(_pos);
+                                      globals.balance += 300;
+                                      print(globals.balance);
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text("Step $_pos/5"),
+                                          content: Text(_words[_pos-1]),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.of(context, rootNavigator: true).pop(result),
+                                              child: Text("Wow!"),
+                                            )
+                                          ],
+                                        );
+                                      });
                                     }
-                                  },
+
+                                  }
+                                },
                                 child: Text("Take photo")
                             )
                           ],
@@ -68,28 +177,16 @@ class _MapsState extends State<Maps> {
                   );
                 },
                 child:Icon(
-                Icons.pin_drop,
-                size: 60,
-                color: Colors.redAccent,
-              ),))).toList();
-      });
-      print(_data);
-    } catch(err) {
-
-    }
+                  Icons.pin_drop,
+                  size: 60,
+                  color: Colors.redAccent,
+                ),))).toList();
+      _markers = [_markers1[_pos]];
+    });
 
   }
-  int _selectedIndex = 0;
+
   MapController _mapController = MapController();
-  double _zoom = 7;
-  List<LatLng> _latLngList = [
-    LatLng(50.45, 30.52),
-    LatLng(13.02, 77.51),
-    LatLng(13.05, 77.53),
-    LatLng(13.155, 77.54),
-    LatLng(13.159, 77.55),
-    LatLng(13.17, 77.55),
-  ];
 
   int cnt = 0;
 
@@ -109,6 +206,12 @@ class _MapsState extends State<Maps> {
       });
     });
 
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
     Future<bool> _handleLocationPermission() async {
@@ -153,7 +256,7 @@ class _MapsState extends State<Maps> {
       LatLng currentLatLng;
       if (_currentPosition != null) {
         currentLatLng =
-            LatLng(_currentPosition!.latitude!, _currentPosition!.longitude!);
+            LatLng(_currentPosition!.latitude, _currentPosition!.longitude);
         if(cnt < 1) {
           _mapController.move(currentLatLng, 13.0);
           cnt += 1;
@@ -169,12 +272,10 @@ class _MapsState extends State<Maps> {
                     options: MapOptions(
                       plugins: [MarkerClusterPlugin(),],
                       center: LatLng(48.1351, 11.5820),
-                      zoom: 50,
+                      zoom: 69,
                     ),
                     layers: [
                       TileLayerOptions(
-                        minZoom: 1,
-                        maxZoom: 18,
                         backgroundColor: Colors.black,
                         urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                         subdomains: ['a', 'b', 'c'],
@@ -192,7 +293,7 @@ class _MapsState extends State<Maps> {
                           height: 60,
                           builder: (context) =>
                               Image(
-                                image:AssetImage("assets/images/ava1.png"),
+                                image:AssetImage(globals.paths[globals.cur-1]),
                               ),
                         ),
 

@@ -6,7 +6,7 @@ class Task extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(top:25.0, left: 10.0, right: 10.0, bottom: 10.0),
         child:
         Column(
           children: [
@@ -40,7 +40,7 @@ class Task extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  color: Colors.grey,
+                  color: Colors.blueGrey[400],
                   height: 20,
                 ),
                 Align(
@@ -48,7 +48,7 @@ class Task extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: 1/3,
                     child: Container(
-                      color: Colors.blue,
+                      color: Colors.amber[800],
                       height: 20,
                       width: MediaQuery.of(context).size.width / 2,
                     ),

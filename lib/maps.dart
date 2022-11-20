@@ -12,6 +12,7 @@ import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:hacks/loc.dart';
+import 'package:hacks/globals.dart' as globals;
 
 
 class Maps extends StatefulWidget {
@@ -55,6 +56,7 @@ class _MapsState extends State<Maps> {
                                     else {
                                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                           content: Text('Thank you very much!')));
+                                      globals.balance += 100;
                                       Navigator.of(context, rootNavigator: true).pop(result);
                                     }
                                   },
@@ -93,14 +95,11 @@ class _MapsState extends State<Maps> {
 
   Position? _currentPosition;
 
-
   Timer? _timer;
 
   @override
   void initState() {
     fetchData();
-
-
 
     _getCurrentPosition();
 
@@ -169,9 +168,8 @@ class _MapsState extends State<Maps> {
                     mapController: _mapController,
                     options: MapOptions(
                       plugins: [MarkerClusterPlugin(),],
-                      center: _latLngList[0],
-                      bounds: LatLngBounds.fromPoints(_latLngList),
-                      zoom: _zoom,
+                      center: LatLng(48.1351, 11.5820),
+                      zoom: 50,
                     ),
                     layers: [
                       TileLayerOptions(

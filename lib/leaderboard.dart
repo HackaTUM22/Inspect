@@ -54,27 +54,27 @@ class Leaderboard extends StatelessWidget {
               ],
             ),
           ),
-        Column(
-          children: List.generate(10, (index) =>
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 90, right: 30),
-                      child: Text((index+1).toString())),
-                    Padding (
-                      padding: EdgeInsets.only(left: 30, right: 60),
-                      child: Text(data[index][1])
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15, right: 90),
-                    child: Text(data[index][2]),
-
-                    )])
-                ),
-
-            )
-          ]);
+        Padding(
+          padding: EdgeInsets.all(30),
+          child: Table(
+              children: List.generate(10, (index) {
+                return TableRow(
+                    children: [
+                      TableCell(
+                        child: Text(data[index][0]),
+                      ),
+                      TableCell(
+                        child: Text(data[index][1]),
+                      ),
+                      TableCell(
+                        child: Text(data[index][2]),
+                      )
+                    ]
+                );
+              })
+          )
+        )
+      ]
+    );
   }
 }

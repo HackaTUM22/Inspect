@@ -11,6 +11,7 @@ import 'package:hacks/task.dart';
 import 'package:hacks/leader.dart';
 import 'package:hacks/maps.dart';
 import 'package:hacks/shop.dart';
+import 'globals.dart' as globals;
 
 
 void main() {
@@ -44,14 +45,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<int> loc = [];
   int _selectedIndex = 0;
-  double _zoom = 7;
-  List<LatLng> _latLngList = [
-    LatLng(50.45, 30.52),
-    LatLng(13.02, 77.51),
-    LatLng(13.05, 77.53),
-    LatLng(13.155, 77.54),
-    LatLng(13.159, 77.55),
-    LatLng(13.17, 77.55),
+
+  final List<String> _titles = [
+    'Map',
+    'Leaderboard',
+    'Tasks',
+    'Shop'
   ];
 
 
@@ -79,6 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(child:Text(_titles[_selectedIndex], style: const TextStyle(fontWeight: FontWeight.bold))),
+      ),
       body: Center(
           child: _widgets[_selectedIndex]
         ),

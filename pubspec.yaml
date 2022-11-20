@@ -76,6 +76,10 @@ flutter:
     - assets/images/silver.png
     - assets/images/bronze.png
     - assets/images/ava1.png
+    - assets/images/ava2.png
+    - assets/images/ava3.png
+    - assets/images/ava4.png
+    - assets/images/ava5.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

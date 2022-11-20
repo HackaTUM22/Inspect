@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Center(child:Text(_titles[_selectedIndex], style: const TextStyle(fontWeight: FontWeight.bold))),
         backgroundColor: Colors.orange[600],
+        titleTextStyle: TextStyle(fontSize: 25),
       ),
       body: Center(
           child: _widgets[_selectedIndex]

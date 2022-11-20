@@ -43,20 +43,14 @@ class _LeaderState extends State<Leader> {
 
   @override
   Widget build(BuildContext context) {
+    _widgets.add(Center(child:Padding(padding:EdgeInsets.only(top:20), child: Text("Weekly", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)))));
     _widgets.add(Leaderboard(data: data1));
+    _widgets.add(Divider(color: Colors.black));
+    _widgets.add(Center(child:Padding(padding:EdgeInsets.only(top:20), child: Text("All-time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)))));
     _widgets.add(Leaderboard(data: data2));
-    return Center(
+    return SingleChildScrollView(
       child: Column(
-        children: [
-          Row(
-            children: [
-              ElevatedButton(onPressed: () => _selectedIndex = 0, child: Text('Weekly')),
-              ElevatedButton(onPressed: () => _selectedIndex = 1, child: Text('All-time')),
-            ],
-          ),
-
-          _widgets[_selectedIndex],
-        ]
+        children: _widgets
       )
     );
   }
